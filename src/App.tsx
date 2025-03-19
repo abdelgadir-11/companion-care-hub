@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import Layout from "./components/layout/Layout";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
@@ -20,32 +21,34 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <Toaster />
-      <Sonner />
-      <Routes>
-        <Route path="/" element={<Layout><Index /></Layout>} />
-        <Route path="/services" element={<Layout><Services /></Layout>} />
-        <Route path="/pet-shop" element={<Layout><PetShop /></Layout>} />
-        <Route path="/pet-care" element={<Layout><PetCare /></Layout>} />
-        <Route path="/about-us" element={<Layout><AboutUs /></Layout>} />
-        
-        {/* Service Pages */}
-        <Route path="/services/pet-grooming" element={<Layout><PetGrooming /></Layout>} />
-        <Route path="/services/vet-finder" element={<Layout><VetFinder /></Layout>} />
-        <Route path="/services/chat-with-vets" element={<Layout><ChatWithVets /></Layout>} />
-        <Route path="/services/emergency-locator" element={<Layout><EmergencyLocator /></Layout>} />
-        
-        {/* Auth Pages */}
-        <Route path="/auth/sign-in" element={<Layout><SignIn /></Layout>} />
-        <Route path="/auth/sign-up" element={<Layout><SignUp /></Layout>} />
-        
-        {/* 404 Page */}
-        <Route path="*" element={<Layout><NotFound /></Layout>} />
-      </Routes>
-    </BrowserRouter>
-  </QueryClientProvider>
+  <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Toaster />
+        <Sonner />
+        <Routes>
+          <Route path="/" element={<Layout><Index /></Layout>} />
+          <Route path="/services" element={<Layout><Services /></Layout>} />
+          <Route path="/pet-shop" element={<Layout><PetShop /></Layout>} />
+          <Route path="/pet-care" element={<Layout><PetCare /></Layout>} />
+          <Route path="/about-us" element={<Layout><AboutUs /></Layout>} />
+          
+          {/* Service Pages */}
+          <Route path="/services/pet-grooming" element={<Layout><PetGrooming /></Layout>} />
+          <Route path="/services/vet-finder" element={<Layout><VetFinder /></Layout>} />
+          <Route path="/services/chat-with-vets" element={<Layout><ChatWithVets /></Layout>} />
+          <Route path="/services/emergency-locator" element={<Layout><EmergencyLocator /></Layout>} />
+          
+          {/* Auth Pages */}
+          <Route path="/auth/sign-in" element={<Layout><SignIn /></Layout>} />
+          <Route path="/auth/sign-up" element={<Layout><SignUp /></Layout>} />
+          
+          {/* 404 Page */}
+          <Route path="*" element={<Layout><NotFound /></Layout>} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;
