@@ -3,12 +3,10 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Make sure the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.getElementById("root");
-  if (root) {
-    createRoot(root).render(<App />);
-  } else {
-    console.error("Root element not found");
-  }
-});
+// Immediately mount the app when the script runs
+const root = document.getElementById("root");
+if (root) {
+  createRoot(root).render(<App />);
+} else {
+  console.error("Root element not found");
+}
